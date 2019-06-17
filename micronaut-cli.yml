@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: validator.doi
+---
+testFramework: junit
+sourceLanguage: java
