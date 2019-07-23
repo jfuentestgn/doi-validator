@@ -1,5 +1,5 @@
 profile: service
-defaultPackage: validator.doi
+defaultPackage: doi.validator
 ---
-testFramework: junit
-sourceLanguage: java
+testFramework: spock
+sourceLanguage: groovy
