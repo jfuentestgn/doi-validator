@@ -3,6 +3,7 @@ package doi.validator
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
+import io.swagger.v3.oas.annotations.Operation
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -17,7 +18,13 @@ class DoiValidatorController {
         this.doiValidatorService = doiValidatorService
     }
 
+    /**
+     *
+     * @param doi Documento Oficial de Identidad. Value to be validated
+     * @return Valitation result
+     */
     @Get(value = "/{doi}", produces = MediaType.APPLICATION_JSON)
+    @Operation(summary = "Validates a DOI", description = "Validates a DOI value and returns its type and whether is valid or not")
     public DoiValidInfo validate(String doi) {
         LOG.info("Before calling service")
         long t0 = System.currentTimeMillis()

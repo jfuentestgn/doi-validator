@@ -31,6 +31,9 @@ dependencies {
     compile "io.micronaut:micronaut-http-server-netty"
     compile "io.micronaut:micronaut-runtime-groovy"
     compile "io.micronaut:micronaut-validation"
+    compile "io.swagger.core.v3:swagger-annotations"
+    compileOnly "io.micronaut.configuration:micronaut-openapi"
+
     compileOnly "io.micronaut:micronaut-inject-groovy"
     runtime "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
@@ -42,6 +45,11 @@ dependencies {
     testCompile "io.micronaut:micronaut-inject-groovy"
     testCompile "io.micronaut.test:micronaut-test-spock:1.0.5"
     testRuntime "org.junit.jupiter:junit-jupiter-engine"
+
+    // OpenAPI-Swagger
+//    annotationProcessor "io.micronaut.configuration:micronaut-openapi"
+//    compile "io.swagger.core.v3:swagger-annotations"
+//    compileOnly "io.micronaut.configuration:micronaut-openapi"
 }
 
 test.classpath += configurations.developmentOnly
