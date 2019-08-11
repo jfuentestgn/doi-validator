@@ -1,5 +1,7 @@
 package doi.validator
 
+import doi.validator.parsers.DoiParser
+
 import javax.inject.Singleton
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -18,8 +20,20 @@ class DoiValidatorServiceImpl implements DoiValidatorService {
     private static final String CONTROL_LETTERS = "TRWAGMYFPDXBNJZSQVHLCKE";
     private static final String NIFPJ_LETTERS = "JABCDEFGHI";
 
+
+    private List<DoiParser> parsers
+
+    DoiValidatorServiceImpl(List<DoiParser> parsers) {
+        this.parsers = parsers.sort { parser -> parser.getPriority() }
+    }
+
     @Override
     DoiValidInfo validateDoi(String value) {
+        return this.parsers.findResult(unknownDoi(value)) { it.parseDoi(value) }
+    }
+
+//    @Override
+    DoiValidInfo validateDoi0(String value) {
         Matcher matcher = this.doiMatchesPattern(value, PATTERN_DNI)
         if (matcher != null) {
             return validateDNI(value, matcher)
